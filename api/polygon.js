@@ -17,7 +17,7 @@ var currentPolygonApiKeyIndex = 0;
 var polygonApiKeys = getPolygonApiKeys();
 
 const fetchLatestPrice = async (symbol) => {
-    const stockQuoteUrl = `https://api.polygon.io/v2/aggs/ticker/${symbol}?adjusted=true`;
+    const stockQuoteUrl = `https://api.polygon.io/v2/aggs/ticker/${symbol.toUpperCase()}/prev?adjusted=true`;
 
     try {
         const fetchStockPriceResponse = await axios.get(stockQuoteUrl, {

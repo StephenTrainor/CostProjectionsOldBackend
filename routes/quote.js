@@ -10,9 +10,9 @@ router.get("/:symbol", async (req, res, next) => {
 
     // res.json(iexCloudGetStockQuoteResponse);
     res.json({
-        "latestPrice": polygonGetStockPriceResponse.results.c,
+        "latestPrice": polygonGetStockPriceResponse.results[0].c,
         "statusCode": (polygonGetCompanyNameResponse.status == "OK" && polygonGetStockPriceResponse.status == "OK") ? 200 : polygonGetStockPriceResponse.status,
-        "companyName": polygonGetCompanyNameResponse.results.name,
+        "companyName": polygonGetCompanyNameResponse.results[0].name,
         "symbol": polygonGetStockPriceResponse.ticker,
     });
 });
