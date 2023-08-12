@@ -20,25 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({origin: "https://www.costprojection.me"}));
+// app.use(cors({origin: "https://www.costprojection.me"}));
+app.use(cors());
 
 app.use('/quote', quoteRouter);
 app.use('/table', tableRouter);
 app.use('/symbol', symbolRouter);
 
-// error handler
-// app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  // res.locals.message = err.message;
-  // res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  // res.status(err.status || 500);
-  // res.render('error');
-// });
-
 // module.exports = app;
 
-app.listen(3000);
-
-// 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
+app.listen(process.env.PORT || 9000);
