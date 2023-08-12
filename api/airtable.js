@@ -3,7 +3,7 @@ var axios = require('axios')
 
 const {
     AIRTABLE_BASE_URL,
-    AIRTABLE_API_KEY
+    AIRTABLE_PAT
 } = process.env;
 
 const fetchAllAirtableRecords = async () => {
@@ -12,7 +12,10 @@ const fetchAllAirtableRecords = async () => {
             url: AIRTABLE_BASE_URL,
             method: 'get',
             params: {
-                api_key: AIRTABLE_API_KEY
+                // api_key: AIRTABLE_API_KEY
+            },
+            headers: {
+                'Authorization': `Bearer ${AIRTABLE_PAT}` // API keys were depreciated
             }
         });
 
@@ -33,10 +36,11 @@ const postAirtableRecord = async (postParams) => {
             method: 'post',
             data: JSON.stringify(postParams),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${AIRTABLE_PAT}`
             },
             params: {
-                api_key: AIRTABLE_API_KEY
+                // api_key: AIRTABLE_API_KEY
             }
         });
 
@@ -57,10 +61,11 @@ const patchAirtableRecord = async (patchParams) => {
             method: 'patch',
             data: JSON.stringify(patchParams),     
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${AIRTABLE_PAT}`
             },
             params: {
-                api_key: AIRTABLE_API_KEY
+                // api_key: AIRTABLE_API_KEY
             }
         });
 
